@@ -102,4 +102,5 @@ testing external dependency via the Internet (that might be Kafka)
 * Acceptance test - An automaticed form of testing that tries to validate the system from the perspective of a user
 * The better the tests, the more likely it is that we can deliever value quicly without being stopped by bugs every now and then.
 * When the entire code is driven by the way it's going to be tested via test-driven-design
-* 
+* It is not our job to test dependencies
+*  
