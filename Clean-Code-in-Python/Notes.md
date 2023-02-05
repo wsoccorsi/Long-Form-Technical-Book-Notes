@@ -30,7 +30,8 @@ the appllication. A descriptor can make this inot a class and be implemented thr
 Meaning defining a new data structure or object that another part of our business logic will use as a tool.
 * You can replace the following decorator implementation with a descriptor
 
-	@Serialization(username=show_original,
+    
+    @Serialization(username=show_original,
 			password=hide_field,
 			ip=show_originial,
 			timestamp=format_time)
