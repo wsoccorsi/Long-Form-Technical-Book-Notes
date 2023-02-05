@@ -1,5 +1,4 @@
-# Clean Code in Python - Develop Maintainable and efficient code 
-by Mariano Anaya
+# Clean Code in Python - Develop Maintainable and efficient code by Mariano Anaya
 
 Missing Chapters 1 - 5, notes to be ported 
 
@@ -24,3 +23,23 @@ of descriptors is observed in libraries or frameworks
 * Non-Data Descriptor - Just implements `__get__`
 * So you would use a descriptor in place of the @property decorator if the @property decorator is duplicating logic throughout
 the appllication. A descriptor can make this inot a class and be implemented through object instantiation
+* Since descriptors are a class attribute they are shared in every instance of the object, which is not good (coupling)
+* Also access attributes with `__dict__` for descriptors
+* Descriptors can be incorporated to make "better" decorators
+* Avoid putting business logic into a descriptor, instead focus on implementational code (thats a weird word to use).
+Meaning defining a new data structure or object that another part of our business logic will use as a tool.
+* You can replace the following decorator implementation with a descriptor
+
+	@Serialization(username=show_original,
+			password=hide_field,
+			ip=show_originial,
+			timestamp=format_time)
+	# replaced with the descriptors
+	class LoginEvent(BaseEvent): 
+		username = ShowOriginal()
+		password = HideField()
+		ip = ShowOriginal()
+		timestamp = FormatTime()
+
+* Methods are actaully just functions that are able to be set as methods because they are descriptors 
+* Some decorators, such as `@property`, `@classmethod`, and `@staticmethod` are descriptors
