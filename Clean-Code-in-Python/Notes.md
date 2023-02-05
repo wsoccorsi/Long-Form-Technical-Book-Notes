@@ -62,4 +62,7 @@ class LoginEvent(BaseEvent):
 				yield float(price_raw)
 ```
 
-*  
+* Generator Expressions - Generators defined by comprehension `(x**2 for x in range(10))`
+* Always pass a generator expression, instead of a list comprehension, to functions that expect iterables, such as
+`mix(), max(), sum()`. This is more efficient and Pythonic
+*   
