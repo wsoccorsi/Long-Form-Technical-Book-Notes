@@ -30,17 +30,18 @@ the appllication. A descriptor can make this inot a class and be implemented thr
 Meaning defining a new data structure or object that another part of our business logic will use as a tool.
 * You can replace the following decorator implementation with a descriptor
 
-    
-    @ Serialization(username=show_original,
-			password=hide_field,
-			ip=show_originial,
-			timestamp=format_time)
-	# replaced with the descriptors
-	class LoginEvent(BaseEvent): 
-		username = ShowOriginal()
-		password = HideField()
-		ip = ShowOriginal()
-		timestamp = FormatTime()
+``` 
+@Serialization(username=show_original,
+        password=hide_field,
+        ip=show_originial,
+        timestamp=format_time)
+# replaced with the descriptors
+class LoginEvent(BaseEvent): 
+    username = ShowOriginal()
+    password = HideField()
+    ip = ShowOriginal()
+    timestamp = FormatTime()
+```
 
 * Methods are actaully just functions that are able to be set as methods because they are descriptors 
 * Some decorators, such as `@property`, `@classmethod`, and `@staticmethod` are descriptors
