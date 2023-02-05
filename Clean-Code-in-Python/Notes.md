@@ -65,4 +65,22 @@ class LoginEvent(BaseEvent):
 * Generator Expressions - Generators defined by comprehension `(x**2 for x in range(10))`
 * Always pass a generator expression, instead of a list comprehension, to functions that expect iterables, such as
 `mix(), max(), sum()`. This is more efficient and Pythonic
-*   
+* itertools is a generator module, that can perform memory efficient computation on iterables
+* Flatten the iteration into a single loop if possible. Don't write code that uses for loop iteration with breaks etc..
+* A Iterable implements the `__iter__` magic method and a Sequence implements `__getitem__ and __len__`
+* Usually choose an iterable over a sequence
+* Coroutines - A function whos execution can be suspended at a given point in time, to later be resumed
+* Coroutine methods are - `close(), throw(), send()`
+* Are coroutines generators? Yes
+* However this book mentions.. oddly that the `send()` method is the method that distinguishes a coroutine 
+from a generator
+* We can create asynchronous programs in Python using coroutines. Meaning we can create programs that have many coroutines, 
+schedule them to work in a particular order, and switch between them when they're suspended after a yield from has been called
+on each of them.
+* We create generators when we want to achieve efficeint iteration. We typically create coroutines with the goal of running
+non-blocking I/O operations
+* A coroutine is defined with `async def`
+* Asynchronous magic methods `__aenter__, __aexit__, __aiter__, __anext__`
+
+## Chapter 8 - Unit Testing and Refactoring
+   

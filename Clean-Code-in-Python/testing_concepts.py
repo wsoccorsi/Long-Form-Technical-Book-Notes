@@ -1,5 +1,6 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
+from itertools import tee
 
 """
 Chapter 6 - Descriptors
@@ -78,11 +79,15 @@ Chapter 6 - Descriptors
 Chapter 7 - Generators, Iterators, and Asynchronous Programming
 """
 
-purchases = [1,2,3,4,5,6,7]
-def load_purchases(pur):
-    for purchase in pur:
-        yield(purchase)
+# purchases = [1,2,3,4,5,6,7]
+# def load_purchases(pur):
+#     for purchase in pur:
+#         yield(purchase)
 
-loaded_purchases = load_purchases(purchases)
-print(next(loaded_purchases))
-print(next(loaded_purchases))
+
+purchases = (i for i in range(0, 10))
+for i in purchases:
+    print(i)
+
+for i in purchases:
+    print(i, 'hi')
