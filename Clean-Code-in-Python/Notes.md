@@ -82,5 +82,24 @@ non-blocking I/O operations
 * A coroutine is defined with `async def`
 * Asynchronous magic methods `__aenter__, __aexit__, __aiter__, __anext__`
 
+_might want to review the end asynchronous bit_
+
 ## Chapter 8 - Unit Testing and Refactoring
    
+* Unit tests are corse, and critical component of the software and they should be treated with the same considerations as the business logic.
+* Unit testss are a piece of code that imports parts of the code with the business logic and tests it with assertions:
+	- Isoliation: Unit tests should be completely independent from any other external agent, and they have to focus only on the 
+	business logic. For this reasion, they do not connect to a database, they don't perform HTTP requests, and so on. Isolation means
+	that the tests are independent among themselves: they must be able to run in any order, without depending on any pervious state.
+	- Performance: Unit tests must run quickly. They are indended to be run multiple times, repeatedly.
+	- Repeatability: Unit tests should be able to objectively assess the status of the software in a deterministic way. This means the 
+	results yielded by the tests should be repeatable. Unit tests assess the status of the code: if a test fails, it 
+	must keep on failing until the code is fixed. Tests shouldn't be flakey or randomized * iteresting
+        - Self-validating: The execution of a unit test determines its result. There should be no extra step required to interpret the
+	unit test 
+* Integration tests - To test multiple componenets at once. We want to use HTTP requests, connect to databases etc here. But we should avoid
+testing external dependency via the Internet (that might be Kafka)
+* Acceptance test - An automaticed form of testing that tries to validate the system from the perspective of a user
+* The better the tests, the more likely it is that we can deliever value quicly without being stopped by bugs every now and then.
+* When the entire code is driven by the way it's going to be tested via test-driven-design
+* 
