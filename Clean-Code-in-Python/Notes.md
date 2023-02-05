@@ -31,7 +31,7 @@ Meaning defining a new data structure or object that another part of our busines
 * You can replace the following decorator implementation with a descriptor
 
     
-    @Serialization(username=show_original,
+    @ Serialization(username=show_original,
 			password=hide_field,
 			ip=show_originial,
 			timestamp=format_time)
