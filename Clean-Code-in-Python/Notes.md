@@ -54,12 +54,12 @@ class LoginEvent(BaseEvent):
 * Anytime we add a yield statement it will make the function a generator
 
 
-
+```
 	def load_purchages(filename):
 		with open(filename) as f:
 			for line in f:
 				*_, price_raw = line.partition(",")
 				yield float(price_raw)
-
+```
 
 *  
