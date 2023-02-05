@@ -14,6 +14,7 @@ of descriptors is observed in libraries or frameworks
 * The most common idiom is to just return the descriptor itself when instance is None.
 * If a descriptor doesn't implement `__set__` then any value on the right-hand side of the statement will override the descriptor entirely.
 
+
 	__set__(self, instance, value)
 	client.descriptor = "value"
 
@@ -45,3 +46,18 @@ class LoginEvent(BaseEvent):
 
 * Methods are actaully just functions that are able to be set as methods because they are descriptors 
 * Some decorators, such as `@property`, `@classmethod`, and `@staticmethod` are descriptors
+* `__slots__`is a magic method to define a fixed set of fields an object of that can can have
+
+## Chapter 7 - Generators, Iterators, and Asynchronous Programming
+
+* Generators are idomatic iteration in Python that improves performance of a program by using less memory
+* Anytime we add a yield statement it will make the function a generator
+
+
+	def load_purchages(filename):
+		with open(filename) as f:
+			for line in f:
+				*_, price_raw = line.partition(",")
+				yield float(price_raw)
+
+*  
