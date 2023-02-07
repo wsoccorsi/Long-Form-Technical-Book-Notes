@@ -103,4 +103,13 @@ testing external dependency via the Internet (that might be Kafka)
 * The better the tests, the more likely it is that we can deliever value quicly without being stopped by bugs every now and then.
 * When the entire code is driven by the way it's going to be tested via test-driven-design
 * It is not our job to test dependencies
-*  
+* Parametize tests to make them faster (just some test with multiple fixture conditions)
+* Use @pytest.mark.parametrize to eliminate repetition, keep the body of the test as cohesive as possible
+* Code coverage should never be a target, that being said an acceptable range is above 80%
+* Abuse in monkey patching is a red flag and generally means there is a mistake in our code
+* Test Doubles - *ruby loves this stuff*, is a type of object that will take the place of a real one in our test suite for different reasons 
+(maybe we don't need the actual production code, but just a dummy object would work, or maybe we can't use it because it requires access to 
+services or it has side effect that we don't want in our unit ests etc..)
+* Mock is a test double
+* A MagicMock supports magic methods ie, the dunders
+*   
