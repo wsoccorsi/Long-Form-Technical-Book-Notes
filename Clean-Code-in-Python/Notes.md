@@ -118,4 +118,7 @@ of its lgoic latered (for example, operators are swapped, conditions are inverte
 in whuch case we c an rely on the tests. In short these break this breaks our tests and well if they don't break we wrote bad tests.
 * Test Driven Desing (TDD), making the tests before the code
 
-## Chapter 9 - Common Design Patterns   
+## Chapter 9 - Common Design Patterns  
+* We should not force the application of a design pattern to the solution we are building, but rather evolve, refactore, and impove our
+solusion until a pattern emerges.
+*  
