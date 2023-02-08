@@ -112,4 +112,10 @@ testing external dependency via the Internet (that might be Kafka)
 services or it has side effect that we don't want in our unit ests etc..)
 * Mock is a test double
 * A MagicMock supports magic methods ie, the dunders
-*   
+* Make methods for repetable asserstions
+* Mutation Testing - The code will be modified to new versions called mutatants that are variations of the original code, but with some 
+of its lgoic latered (for example, operators are swapped, conditions are inverted). A good test suite will catch these mutatnts can kill them, 
+in whuch case we c an rely on the tests. In short these break this breaks our tests and well if they don't break we wrote bad tests.
+* Test Driven Desing (TDD), making the tests before the code
+
+## Chapter 9 - Common Design Patterns   
