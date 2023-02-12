@@ -121,4 +121,9 @@ in whuch case we c an rely on the tests. In short these break this breaks our te
 ## Chapter 9 - Common Design Patterns  
 * We should not force the application of a design pattern to the solution we are building, but rather evolve, refactore, and impove our
 solusion until a pattern emerges.
-*  
+* Creational Patterns - Deal with object instantiation
+* Factory - An object for creating other objects
+* Singletons are a bad pattern of choice
+* Shared State - Rather than forcing our desging to have a singleton - its better to have the data replicated across multiple instances
+* You can use a descriptor to implement a shared attribute
+* The Borg Pattern -   
