@@ -126,4 +126,13 @@ solusion until a pattern emerges.
 * Singletons are a bad pattern of choice
 * Shared State - Rather than forcing our desging to have a singleton - its better to have the data replicated across multiple instances
 * You can use a descriptor to implement a shared attribute
-* The Borg Pattern -   
+* The Borg Pattern - Create an object that is capable of replicating all of its attributes among all instances of the same class. 
+* the Adapter Pattern  - Also knwon as a wrapper. A work around to an inherited parent method, where a private method adapts
+the arugments to fit the parents paramteters. This can happen when code does not fit due to changing reqs/
+* Composite Pattern - Parts of our prgram that have objects that are made out of other objects.
+* When we create a directory to build a package, we place the `__init__.py` along with the rest of the files. This is the root of the module, 
+a sort of facade. The rest of the files define the objects to export, but they shouldn't be directly imported by the client. The `__init__` should.
+* Chain of responsiblity - Logic that is essentially try current if not then go to successor. Kinda like tree traversal
+* The Template Method - Allows us to resuse code, and it makes our objects more flexible and easier to chage while preseving polymorphism.  
+* The command pattern - The ability to separate an action that needs to be done from the moment that it is requested to its actual execution
+*  
