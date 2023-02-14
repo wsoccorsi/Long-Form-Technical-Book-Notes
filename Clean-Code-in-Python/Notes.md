@@ -135,4 +135,13 @@ a sort of facade. The rest of the files define the objects to export, but they s
 * Chain of responsiblity - Logic that is essentially try current if not then go to successor. Kinda like tree traversal
 * The Template Method - Allows us to resuse code, and it makes our objects more flexible and easier to chage while preseving polymorphism.  
 * The command pattern - The ability to separate an action that needs to be done from the moment that it is requested to its actual execution
-*  
+* abc.ABC - A module for defining abstract base classes
+* The null object pattern - Functions or methods must return objects of a consisten type. I.e an empty dict not `None`
+* Returning `None` is a bad pattern
+* Remeber the rule of three or more of the same pattern before trying to fit in a design pattern
+* When developing software think about chess. Professonal chess players don't think about every combination of moves in the early stages of
+the game it should be the same for design patterns.
+* Its not important to add the design pattern into documentation of code. Let the code speak for itself
+
+## Chapter 10 - Clean Architecture
+  
