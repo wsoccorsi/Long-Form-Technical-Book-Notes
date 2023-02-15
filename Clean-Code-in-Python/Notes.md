@@ -144,4 +144,10 @@ the game it should be the same for design patterns.
 * Its not important to add the design pattern into documentation of code. Let the code speak for itself
 
 ## Chapter 10 - Clean Architecture
-  
+* Separation of concerns - idk lul
+* A component - refers to one cohesive unit (it might be class for example). A component in arch terms means anything in the system that can be
+treated as working unit. 
+* Undesirable for a system to be one monolithic component
+* Breaking that into multiple cohesive componets is a microservice arch..
+* Instead of making a service, think about whether you can make the architecture a python package to reuse code
+*  
