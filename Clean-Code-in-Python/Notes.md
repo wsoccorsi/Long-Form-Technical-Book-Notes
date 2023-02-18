@@ -150,4 +150,4 @@ treated as working unit.
 * Undesirable for a system to be one monolithic component
 * Breaking that into multiple cohesive componets is a microservice arch..
 * Instead of making a service, think about whether you can make the architecture a python package to reuse code
-*  
+* Everything is a reference and a suggestion. These are not laws   
