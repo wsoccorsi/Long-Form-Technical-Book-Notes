@@ -1,4 +1,4 @@
-* System Design Interview Volume 1 - An Insiders Guide by Alex Xu
+# System Design Interview Volume 1 - An Insiders Guide by Alex Xu
 
 
 ## Chapter 2 - Back-Of-The Envelope Estimate
