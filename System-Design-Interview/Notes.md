@@ -117,7 +117,7 @@ Step 2 - Propose high-level design and get buy-in
 
 Send a HTTP 429 - Status code meaning the client has sent too many requests when a client goes overboard with requests.
 
-Rate limiting algorithms:
+##### Rate limiting algorithms:
 * Token Bucket
 * Leaking bucket
 * Fixed window counter
@@ -126,3 +126,105 @@ Rate limiting algorithms:
 
 Token bucket algorithm:
 * A token bucket is a container that has pre-defined capacity. Tokens are put in the bucket 
+* Tokens are put in the bucket at preset rates periodically. Once the bucket is full, no more tokens are added.
+* When a request arrives we look to see if there are enough tokens in the bucket.
+* Different buckets for each endpoint, each IP address also needs its own bucket
+
+Pros:
+* Easy to implement
+* Memory efficient
+* Token bucket allows a burst of traffic for short periods. A request can go through as long as there are tokens left.
+
+Cons:
+Two parameters in the algorithm are bucket size and token refill rate. However, it might be challenging to tune them properly
+
+
+Leaking bucket algorithm: 
+* Similar to the above excpet that requests are processed at a fixed rate. It is usually implemented with a FIFO queue. 
+* When a request arrives, the system checks if the queue is full. If it is not, the request is added to the queue
+* The queue is processed at a fixed rate, usually in a unit of seconds
+
+Pros: 
+* Memory efficient given the limited queue size
+* Requests are processed at a fixed rate therefore it is suitable for use cases that a stable outflow rate is needed
+
+Cons:
+* A burst of traffic fills up the queue with old requests, and if they are not processed in time, recent requests will be rate
+limited. 
+* There are two parameters in the algorithm. It might not be easy to tune them properly.
+
+
+Fixed Window counter algorithm:
+* The algorithm divides the timeline into fix-sized time windows and ssign a counter for each window
+* Each request increments the counter by one
+* Once the counter reaches the pre-defined threshold, new requests are dropped until a new time window starts
+
+Pros:
+* Memory efficient
+* Easy to understand
+* Resetting available quota at the end of a unit time window fits certain use cases.
+
+Cons:
+* Spike in traffic at the edges of a window could cause more requests than the allowed quota to go through
+
+
+Sliding Window algorithm:
+* The algorithm keeps track of request timestamps. Timestamp data is usually kept in cache, such as sorted sets of Redis
+* When a new request comes in, remove all the outdated timestamps. Outdated timestamps are defined as those older than the start of 
+the current time window
+* Add timestamp of the new request to the log
+* If the log size is the same or lower than the allowed count, a request is accepted. Otherwise, it is rejected.
+
+Pros:
+* Rate limiting implemented by this algorithm is very accurate. In any rollowing window, requests will not exceed the rate limit
+
+Cons:
+* The algorithm consumes a lot of memory because even if a request is reject, its timestamp might still be stored in memory
+
+
+Sliding window counter algorithm:
+
+* Requests in the current window + requests in the previous window * overlap percentage of the rollowing window and previous window.
+
+Pros:
+* It smooths out spikes in traffic because the rate is based on the average rate of the previous window
+* Memory efficient
+
+Cons:
+* It only works for not-so-strict look back window. It is an approximation of the actual rate because it assumes requests
+in the previous window are evenly distributed. However, this problem may not be as bad as it seems. According to experiments done by
+Cloudflare, only .003% of requests are wrongly allowed or rate limited among 400 million requests.
+
+#####  High Level architecture
+
+Where do we store counters? Using a db is not a good idea due to slowness of disk access. In-mem cache is chosen because 
+it is fast and supports time-based expiration strategy. For instance, Redis is a popular option to implement rate limiting.
+It is an in-memory store that offers two commands INCR and EXPIRE.
+
+![](images/rate-limiter2.png)
+
+* The client sends a request to rate limiting middleware.
+* Rate limiting middleware fetches the counter from the corresponding bucket in Redis and checks if the limit is reached or not.
+* If the limit is reached, the request is rejected
+* If the limit is not reached, the request is sent to the api and we increment the counter
+
+Step 2 - Design deep dive
+
+How are rate limiting rules created? Where are the rules stored? And how do we handle requests that are rate limited?
+
+We can store these in YAML config files, and save on disk.
+
+```
+domain: auth
+descriptors: 
+ - key: auth_type
+   value: login
+   rate_limit:
+    unit: minute
+    requests_per_unit: 5
+```
+
+When a rate limit is hit we send a 429 with the proper HTTP headers
+
+
+![](images/rate-limiter3.png)
