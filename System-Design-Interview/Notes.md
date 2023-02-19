@@ -1,4 +1,4 @@
-# System Design Interview Volume 1 - An Insiders Guide by Alex Xu
+# System Design Interview 
 
 
 ## Chapter 2 - Back-Of-The Envelope Estimate
@@ -123,3 +123,6 @@ Rate limiting algorithms:
 * Fixed window counter
 * Sliding window log
 * Sliding window counter
+
+Token bucket algorithm:
+* A token bucket is a container that has pre-defined capacity. Tokens are put in the bucket 
