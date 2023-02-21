@@ -228,3 +228,59 @@ When a rate limit is hit we send a 429 with the proper HTTP headers
 
 
 ![](images/rate-limiter3.png)
+
+
+## Chapter 5 - Design Consistent Hashing
+
+To achieve horizontal scaling, it is important to distribute requests/data efficiently and evenly across servers.
+
+-- Skipping notes, does not seem relevant --
+
+## Chapter 6 - Design A Key Value Store
+
+-- Skipping notes, does not seem relevant --
+
+## Chapter 15 - Design Google Drive
+
+Step 1 - Understand the problem and establish design scope
+ 
+* This is a big problem so lets narrow scope
+* Ask: "What are the most important features? Is this mobile or web? What are the supported file formats? Do we need encryption?
+Is there a file size limit? etc .."
+
+
+We are focusing on the following features:
+* Add files. The easiest way to add a file is to drag and drop
+* Download files
+* Sync files across multiple devices. When a file is added to one device, it is automatically synced to other devices
+* See file revisions
+* Share files with your friends, family and coworkers
+* Send a notification when a file is edited, deleted, or shared with you
+* We WONT be discussing collaboration. Google doc allows multiple people to edit blah blah out of scope
+
+Clarifying requirements: 
+* Reliability.. Data loss is unacceptable
+* Fast sync speed. If file sync takes too much time, users will become impatient and abandon the product
+* Bandwidth usage. If a product takes a lot of unnecessary network bandwidth, users will be unhappy when they are on a mobile
+data plan
+* Scalability. The system should be able to handle high volumes of traffic
+* High availability. users should still be able to use the system when some server are offline, slowed down, or have unexpected
+network errors
+
+Back of the envelope estimation
+* Assume the application has 50 million signed up users and 10 million DAU
+* Users get 10 GB free space
+* Assume users upload 2 files per day. The average file size is 500 KB
+* 1:1 read to write ratio
+* Total space allocated: 50 million * 10 GB = 500 PB
+* QPS for upload API: 10 million * 2 upload / 24 hours / 3600 seconds = ~240
+* Peak QPS = QPS * 2 = 480
+
+Step 2 - Propose high-level design and get buy-in
+
+* A webserver to upload and download files
+* A database to keep track of metadata like user data, login info, files info, etc..
+* A storage system to store files. We allocate 1TB of storage space to store files
+
+APIs:
+Upload a file, Download a file, Get file revisions
