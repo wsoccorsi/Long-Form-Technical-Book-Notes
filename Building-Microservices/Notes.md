@@ -75,3 +75,35 @@ in a production setting
     * Much harder to monitor across multiple systems but less binary up or down monitoring
     
 ## Chapter 2 - How to Model Microservices
+
+##### Information Hiding
+* Improved Development Time - parallel development
+* Comprehensibility - Each module can be understood in isolation
+* Flexability - Orthogonal to each other
+
+##### Cohesion and Coupling
+* Cohesion - Code that changes together stays together, when adding functionality we want as little code to change as possible
+* We want related behavior to stay together and unrelated to go elsewhere
+* Coupling - A change in one service needs a change in another
+* Coupling can be unavoidable, we only limit it as much as we can
+
+
+Domain -  Pass-through  - Common - Content
+
+Low/Loose Coupling    ->       High coupling
+
+* Domain Coupling - Where one microservice needs to interact with another microservice, because the first microserivce needs to 
+make use of the functionality that the other provides (Newman 41).
+* Domain Coupling is largely unavoidable
+* Though to much domain coupling by a single service might mean that service is doing to much
+* Temporal Coupling in microservices is different from temporal coupling in application code? Basically
+one microservice needs another microservice to do something at the same time. This is not a bad thing however.
+I think they mean RPC here
+* Pass-Through Coupling - "Describes a situation in which one microservice passes data to another microservice purely because the
+data is needed by some other microserivce furth downstream" (Newman 43)
+* Pass-Through Coupling is very bad :/
+* Common Coupling - "When two or more microservices make use of a common set of data" (Newman 46.)
+* Content Coupling - "Where upstream service reaches into internals of downstream service and changes its internal state" (Newman 49.)
+* An example of content coupling would be a microservice connecting ot another's DB and then mangling with it
+ 
+ 
