@@ -105,5 +105,43 @@ data is needed by some other microserivce furth downstream" (Newman 43)
 * Common Coupling - "When two or more microservices make use of a common set of data" (Newman 46.)
 * Content Coupling - "Where upstream service reaches into internals of downstream service and changes its internal state" (Newman 49.)
 * An example of content coupling would be a microservice connecting ot another's DB and then mangling with it
- 
+* Avoid content coupling
+
+
+##### Just Enough Domain-Driven Design
+
+* Made of the concepts 
+    * Ubiquitous language - "Defining and adopting a common language to be used in code and in describing
+    the domain, to aid communication" (Newman 52.)
+    * Aggregate - "A collection of objects that are managed as a single entity, typically referring to real-world concepts"
+    (Newman 52.)
+    * Bounded context - "An explicict coundary within a business domain that provides functionality to the wider system but that 
+    also hides complexity" (Newman 52.)
+    
+    ##### Ubiquitous Language
+    * The idea that we should use the product terminology in the code
+    
+    ##### Aggregate
+    * Think of something like an Order, an Invoice a Stock Item etc..
+    * Something that typically has a lifecycle around it
+    * One aggregate should be managed by one microservice
+    
+    ##### Bounded Context
+    * Contains one to many aggreagtes
+    * Hidden Models - Only share the needed info from shared models
+    * Shared mdoels - 
+
+##### Alternatives to Business Domain Boundaries
+
+* There are some :D 
+  
+    ##### Volatility
+    * Making services based on what changes the most
+    
+    ##### Technology
+    * The need to make use of different technology can be a boundary
+    * But this is usually less than ideal (think the three tiered architecture)
+    
+    
+## Chapter 3 - Splitting the Monolith
  
