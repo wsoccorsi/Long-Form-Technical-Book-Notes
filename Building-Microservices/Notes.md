@@ -144,4 +144,18 @@ data is needed by some other microserivce furth downstream" (Newman 43)
     
     
 ## Chapter 3 - Splitting the Monolith
- 
+
+* Microservices are not the goal
+
+##### Incremental Migration
+* Focus more on the outcome of the system
+* Chip away at it, rather than a big bang approach
+
+
+##### The Monolith Is Rarely the Enemy
+* Focus on the benefits of monlith vs microservice, does that seem worth it?
+
+
+##### Decomposition by layer
+* Don't forget to decompose the UI (I'm not really sure how this would look)
+* Migrate the code first or data first (less common)
