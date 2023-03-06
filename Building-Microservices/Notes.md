@@ -166,3 +166,8 @@ We also lose out on the integrity of data, ex, a foreign key no longer exists in
 our db was not updated etc..
 
 ## Chapter 4 - Microservice Communication Styles
+
+##### From In-Process to Inter-Process
+* Inter-Process - Calls between different processes across a network
+* In-Process - Calls within same process
+
