@@ -159,3 +159,10 @@ data is needed by some other microserivce furth downstream" (Newman 43)
 ##### Decomposition by layer
 * Don't forget to decompose the UI (I'm not really sure how this would look)
 * Migrate the code first or data first (less common)
+
+##### Transactions
+* When we split up databases to be independent in other microservices we lose out on join operations between tables.
+We also lose out on the integrity of data, ex, a foreign key no longer exists in another table because it was deleted but 
+our db was not updated etc..
+
+## Chapter 4 - Microservice Communication Styles
